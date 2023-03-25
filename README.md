@@ -1,7 +1,7 @@
-# App-Generar-Facturas
+# Aya-Restaurant
 
-Proyecto de OpenBootcamp. Aplicación de gestión de facturas, donde tendremos un panel de administración para la gestión de las facturas, empresas, usuarios y visualización y generación de las facturas en PDF.
+Aplicación Android para la gestión de un restaurante, donde se podrá ver los diferentes platos, hacer pedidos y tener un seguimiento de estos, además de una vista de la cuenta del usuario. 
 
 ## Tecnologias
-- [ ] **Backend -** .Net
-- [ ] **Frontend -** Angular
+- [ ] **Backend -** .Net, MySQL
+- [ ] **Frontend -** Kotlin
