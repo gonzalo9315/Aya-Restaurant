@@ -15,104 +15,125 @@ CREATE SCHEMA IF NOT EXISTS `ayaRestaurant` DEFAULT CHARACTER SET utf8 ;
 USE `ayaRestaurant` ;
 
 -- -----------------------------------------------------
--- Table `ayaRestaurant`.`usuarios`
+-- Table `ayaRestaurant`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`usuarios` (
+CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
-  `direccion` VARCHAR(45) NOT NULL,
-  `telefono` INT NOT NULL,
-  `rol` VARCHAR(45) NOT NULL DEFAULT 'cliente',
-  `baja` TINYINT NOT NULL DEFAULT 0,
+  `name` VARCHAR(45) NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
+  `phone` INT NOT NULL,
+  `role` INT NOT NULL DEFAULT 0,
+  `salt` VARCHAR(45) NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NULL,
+  `deletedAt` DATETIME NULL,
+  `isDeleted` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  UNIQUE INDEX `salt_UNIQUE` (`salt` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ayaRestaurant`.`platos`
+-- Table `ayaRestaurant`.`dishes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`platos` (
+CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`dishes` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(300) NOT NULL,
-  `ingredientes` VARCHAR(300) NOT NULL,
-  `foto` VARCHAR(100) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(300) NOT NULL,
+  `ingredients` VARCHAR(300) NOT NULL,
+  `price` DECIMAL NOT NULL,
+  `photo` VARCHAR(100) NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NULL,
+  `deletedAt` DATETIME NULL,
+  `isDeleted` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ayaRestaurant`.`pedidos`
+-- Table `ayaRestaurant`.`orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`pedidos` (
-  `id` INT NOT NULL,
-  `usuario_id` INT NOT NULL,
-  `estado` VARCHAR(45) NOT NULL DEFAULT 'creado',
-  PRIMARY KEY (`id`, `usuario_id`),
-  INDEX `fk_pedidos_usuarios_idx` (`usuario_id` ASC),
+CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`orders` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userId` INT NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
+  `state` VARCHAR(45) NOT NULL DEFAULT 'created',
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NULL,
+  `deletedAt` DATETIME NULL,
+  `isDeleted` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`, `userId`),
+  INDEX `fk_pedidos_usuarios_idx` (`userId` ASC),
   CONSTRAINT `fk_pedidos_usuarios`
-    FOREIGN KEY (`usuario_id`)
-    REFERENCES `ayaRestaurant`.`usuarios` (`id`)
+    FOREIGN KEY (`userId`)
+    REFERENCES `ayaRestaurant`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ayaRestaurant`.`categoria`
+-- Table `ayaRestaurant`.`categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`categoria` (
-  `id` INT NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`categories` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NULL,
+  `deletedAt` DATETIME NULL,
+  `isDeleted` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ayaRestaurant`.`categorias_del_plato`
+-- Table `ayaRestaurant`.`dishes_categorie`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`categorias_del_plato` (
-  `categoria_id` INT NOT NULL,
-  `platos_id` INT NOT NULL,
-  PRIMARY KEY (`categoria_id`, `platos_id`),
-  INDEX `fk_categoria_has_platos_platos1_idx` (`platos_id` ASC),
-  INDEX `fk_categoria_has_platos_categoria1_idx` (`categoria_id` ASC),
+CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`dishes_categorie` (
+  `categorieId` INT NOT NULL,
+  `dishId` INT NOT NULL,
+  `deletedAt` DATETIME NULL,
+  `isDeleted` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`categorieId`, `dishId`),
+  INDEX `fk_categoria_has_platos_platos1_idx` (`dishId` ASC),
+  INDEX `fk_categoria_has_platos_categoria1_idx` (`categorieId` ASC),
   CONSTRAINT `fk_categoria_has_platos_categoria1`
-    FOREIGN KEY (`categoria_id`)
-    REFERENCES `ayaRestaurant`.`categoria` (`id`)
+    FOREIGN KEY (`categorieId`)
+    REFERENCES `ayaRestaurant`.`categories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_categoria_has_platos_platos1`
-    FOREIGN KEY (`platos_id`)
-    REFERENCES `ayaRestaurant`.`platos` (`id`)
+    FOREIGN KEY (`dishId`)
+    REFERENCES `ayaRestaurant`.`dishes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ayaRestaurant`.`articulos_del_pedido`
+-- Table `ayaRestaurant`.`order_items`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`articulos_del_pedido` (
-  `pedido_id` INT NOT NULL,
-  `plato_id` INT NOT NULL,
-  PRIMARY KEY (`pedido_id`, `plato_id`),
-  INDEX `fk_pedidos_has_platos_platos1_idx` (`plato_id` ASC),
-  INDEX `fk_pedidos_has_platos_pedidos1_idx` (`pedido_id` ASC),
+CREATE TABLE IF NOT EXISTS `ayaRestaurant`.`order_items` (
+  `orderId` INT NOT NULL,
+  `dishId` INT NOT NULL,
+  PRIMARY KEY (`orderId`, `dishId`),
+  INDEX `fk_pedidos_has_platos_platos1_idx` (`dishId` ASC),
+  INDEX `fk_pedidos_has_platos_pedidos1_idx` (`orderId` ASC),
   CONSTRAINT `fk_pedidos_has_platos_pedidos1`
-    FOREIGN KEY (`pedido_id`)
-    REFERENCES `ayaRestaurant`.`pedidos` (`id`)
+    FOREIGN KEY (`orderId`)
+    REFERENCES `ayaRestaurant`.`orders` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pedidos_has_platos_platos1`
-    FOREIGN KEY (`plato_id`)
-    REFERENCES `ayaRestaurant`.`platos` (`id`)
+    FOREIGN KEY (`dishId`)
+    REFERENCES `ayaRestaurant`.`dishes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
