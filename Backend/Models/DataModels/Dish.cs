@@ -11,7 +11,7 @@ namespace Backend.Models.DataModels
         public string Ingredients { get; set; }
         [Required]
 
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
 
         public string Photo { get; set; }

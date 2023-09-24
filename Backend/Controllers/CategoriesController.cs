@@ -13,11 +13,11 @@ namespace Backend.Controllers
     [ApiController]
     public class CategoriesController: Controller
     {
-        private readonly ICategorieORM _categorieORM;
+        private readonly ICategoryORM _categoryORM;
 
-        public CategoriesController(ICategorieORM categorieOrm)
+        public CategoriesController(ICategoryORM categoryOrm)
         {
-            _categorieORM = categorieOrm;
+            _categoryORM = categoryOrm;
         }
 
         // GET: api/Categories
@@ -25,7 +25,7 @@ namespace Backend.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<ActionResult> GetAllCategories()
         {
-            var categories = await _categorieORM.GetAll();
+            var categories = await _categoryORM.GetAll();
 
             if (categories.LongCount() > 0)
             {
@@ -42,7 +42,7 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAllCategoriesAvalaible()
         {
-            var categories = await _categorieORM.GetAllAvalaible();
+            var categories = await _categoryORM.GetAllAvalaible();
 
             if (categories.LongCount() > 0)
             {
@@ -56,32 +56,32 @@ namespace Backend.Controllers
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetCategorieByID(int id)
+        public async Task<ActionResult> GetCategoryByID(int id)
         {
-            if (id < 0) return BadRequest("Error in Get Categorie by ID: missing ID");
+            if (id < 0) return BadRequest("Error in Get Category by ID: missing ID");
 
             try
             {
-                return Ok(await _categorieORM.GetByID(id));
+                return Ok(await _categoryORM.GetByID(id));
             }
             catch (Exception ex)
             {
-                return BadRequest("Error in Get Categorie by ID: " + ex.Message);
+                return BadRequest("Error in Get Category by ID: " + ex.Message);
             }
         }
 
         // POST: api/Categories
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> CreateCategorie([FromBody] Categorie categorie)
+        public async Task<ActionResult> CreateCategory([FromBody] Category category)
         {
             try
             {
-                return Created("Successful Created!", await _categorieORM.Create(categorie));
+                return Created("Successful Created!", await _categoryORM.Create(category));
             }
             catch (Exception ex)
             {
-                return BadRequest("Error in Create Categorie: " + ex.Message);
+                return BadRequest("Error in Create Category: " + ex.Message);
             }
         }
 
@@ -89,49 +89,49 @@ namespace Backend.Controllers
         [Route("AddDish")]
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> AddDishToCategorie([FromBody] DishCategorie dishCategorie)
+        public async Task<ActionResult> AddDishToCategory([FromBody] DishCategory dishCategory)
         {
             try
             {
-                return Created("Successful Adding!", await _categorieORM.AddDish(dishCategorie));
+                return Created("Successful Adding!", await _categoryORM.AddDish(dishCategory));
             }
             catch (Exception ex)
             {
-                return BadRequest("Error in Add Dish To Categorie: " + ex.Message);
+                return BadRequest("Error in Add Dish To Category: " + ex.Message);
             }
         }
 
         // PUT: api/Categories/5
         [HttpPut("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> UpdateCategorieByID(int id, [FromBody] Categorie categorie)
+        public async Task<ActionResult> UpdateCategoryByID(int id, [FromBody] Category category)
         {
-            if (id < 0) return BadRequest("Error in Update Categorie: missing ID");
+            if (id < 0) return BadRequest("Error in Update Category: missing ID");
 
             try
             {
-                return Ok(await _categorieORM.UpdateByID(id, categorie));
+                return Ok(await _categoryORM.UpdateByID(id, category));
             }
             catch (Exception ex)
             {
-                return BadRequest("Error in Update Categorie: " + ex.Message);
+                return BadRequest("Error in Update Category: " + ex.Message);
             }
         }
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> DeleteCategorieByID(int id)
+        public async Task<ActionResult> DeleteCategoryByID(int id)
         {
-            if (id < 0) return BadRequest("Error in Delete Categorie: missing ID");
+            if (id < 0) return BadRequest("Error in Delete Category: missing ID");
 
             try
             {
-                return Ok(await _categorieORM.DeleteByID(id));
+                return Ok(await _categoryORM.DeleteByID(id));
             }
             catch (Exception ex)
             {
-                return BadRequest("Error in Delete Categorie: " + ex.Message);
+                return BadRequest("Error in Delete Category: " + ex.Message);
             }
         }
 
@@ -139,15 +139,15 @@ namespace Backend.Controllers
         [Route("DeleteDish")]
         [HttpDelete]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
-        public async Task<ActionResult> DeleteDishToCategorie([FromBody] DishCategorie dishCategorie)
+        public async Task<ActionResult> DeleteDishToCategory([FromBody] DishCategory dishCategory)
         {
             try
             {
-                return Ok(await _categorieORM.DeleteDish(dishCategorie));
+                return Ok(await _categoryORM.DeleteDish(dishCategory));
             }
             catch (Exception ex)
             {
-                return BadRequest("Error in Delete Dish To Categorie: " + ex.Message);
+                return BadRequest("Error in Delete Dish To Category: " + ex.Message);
             }
         }
     }

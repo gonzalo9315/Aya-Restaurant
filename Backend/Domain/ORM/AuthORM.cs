@@ -72,16 +72,16 @@ namespace Backend.Domain.ORM
         public async Task<bool> Update(int id, User user)
         {
             var db = DbConnection();
-            DateTime updateAt = DateTime.Now;
+            DateTime updatedAt = DateTime.Now;
             var sql = @"UPDATE users 
-                        SET name=@Name, email=@Email, password=@Password, address=@Address, phone=@Phone, updateAt=@updateAt 
+                        SET name=@Name, email=@Email, password=@Password, address=@Address, phone=@Phone, updatedAt=@updatedAt 
                         WHERE id=@id";
             var result = await db.ExecuteAsync(sql, new {   user.Name,
                                                             user.Email,
                                                             user.Password,
                                                             user.Address,
                                                             user.Phone,
-                                                            updateAt,
+                                                            updatedAt,
                                                             id
                                                         });
             return result > 0;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/trackingFragment">
+
+    <fragment
+        android:id="@+id/trackingFragment"
+        android:name="com.example.frontend.fragments.TrackingFragment"
+        android:label="fragment_tracking"
+        tools:layout="@layout/fragment_tracking" />
+    <fragment
+        android:id="@+id/dishDetailFragment"
+        android:name="com.example.frontend.fragments.DishDetailFragment"
+        android:label="fragment_dish_detail"
+        tools:layout="@layout/fragment_dish_detail" />
+    <fragment
+        android:id="@+id/tabNavFragment"
+        android:name="com.example.frontend.fragments.TabNavFragment"
+        android:label="fragment_tab_nav"
+        tools:layout="@layout/fragment_tab_nav" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.frontend.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.frontend.fragments.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/dishesFragment"
+        android:name="com.example.frontend.fragments.DishesFragment"
+        android:label="fragment_dishes"
+        tools:layout="@layout/fragment_dishes" />
+</navigation>

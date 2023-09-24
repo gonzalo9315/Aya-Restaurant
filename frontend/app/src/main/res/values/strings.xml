@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Client</string>
+    <string name="homeTab">Inicio</string>
+    <string name="menuTab">Carta</string>
+    <string name="promoTab">Promociones</string>
+    <string name="tabTop">Tab</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="intro">AyaRestaurant es un restaurante que opera en Huelva desde 2016
+        y es conocido por innovar con sus platos creativos y su buen servicio al cliente
+    </string>
+    <string name="direction">Dirección: Huelva, 20989</string>
+    <string name="contact">Contacto:</string>
+    <string name="tlf">· Tlf: 954 756 890</string>
+    <string name="whatsApp">· WhatsApp: 555 555 555</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="ingredients"><u>Ingredientes:</u></string>
+</resources>

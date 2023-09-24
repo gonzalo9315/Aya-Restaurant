@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="320dp">
+    <ImageView
+        android:id="@+id/imageDish"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:src="@tools:sample/avatars"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/nameDish"
+        android:layout_marginTop="30dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_color"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:text="Dish"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:fontFamily="@font/vollkorn_italic"/>
+</androidx.cardview.widget.CardView>

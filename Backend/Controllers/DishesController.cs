@@ -38,9 +38,9 @@ namespace Backend.Controllers
         }
 
         // GET: api/Dishes/Categorie/5
-        [Route("categorie/{id}")]
+        [Route("category/{id}")]
         [HttpGet]
-        public async Task<ActionResult> GetAllDishesByCategorie(int id)
+        public async Task<ActionResult> GetAllDishesByCategory(int id)
         {
             var dishes = await _dishORM.GetAllByCategorie(id);
 

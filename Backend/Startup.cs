@@ -30,7 +30,7 @@ namespace Backend
             services.AddScoped<IUserORM, UserORM>();
             services.AddScoped<IDishORM, DishORM>();
             services.AddScoped<IOrderORM, OrderORM>();
-            services.AddScoped<ICategorieORM, CategorieORM>();
+            services.AddScoped<ICategoryORM, CategoryORM>();
             services.AddControllers();
 
 
@@ -86,6 +86,7 @@ namespace Backend
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

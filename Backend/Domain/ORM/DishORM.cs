@@ -26,9 +26,9 @@ namespace Backend.Domain.ORM
         public async Task<bool> Create(Dish dish)
         {
             var db = DbConnection();
-            var sql = @"INSERT INTO dishes (name, description, ingredients, photo, createdAt) 
-                        VALUES (@Name, @Description, @Ingredients, @Photo, @CreatedAt)";
-            var result = await db.ExecuteAsync(sql, new { dish.Name, dish.Description, dish.Ingredients, dish.Photo, dish.CreatedAt });
+            var sql = @"INSERT INTO dishes (name, description, ingredients, price, photo, createdAt) 
+                        VALUES (@Name, @Description, @Ingredients, @Price, @Photo, @CreatedAt)";
+            var result = await db.ExecuteAsync(sql, new { dish.Name, dish.Description, dish.Ingredients, dish.Price, dish.Photo, dish.CreatedAt });
             return result > 0;
         }
 
@@ -45,7 +45,7 @@ namespace Backend.Domain.ORM
         {
             var db = DbConnection();
             var sql1 = @"SELECT * FROM categories WHERE id=@idCategorie";
-            var categorieIsDeleted = await db.QuerySingleAsync<Categorie>(sql1, new { idCategorie });
+            var categorieIsDeleted = await db.QuerySingleAsync<Category>(sql1, new { idCategorie });
 
             if(categorieIsDeleted.IsDeleted)
             {
@@ -54,8 +54,8 @@ namespace Backend.Domain.ORM
             else
             {
                 var sql2 = @"SELECT * FROM dishes 
-                            INNER JOIN dishes_categorie ON dishes.id=dishes_categorie.dishId 
-                            WHERE categorieId=@idCategorie AND dishes_categorie.isDeleted=false";
+                            INNER JOIN dishes_category ON dishes.id=dishes_category.dishId 
+                            WHERE categorieId=@idCategorie AND dishes_category.isDeleted=false";
                 return await db.QueryAsync<Dish>(sql2, new { idCategorie });
             }
         }
@@ -79,9 +79,9 @@ namespace Backend.Domain.ORM
             var db = DbConnection();
             DateTime updatedAt = DateTime.Now;
             var sql = @"UPDATE dishes 
-                        SET name=@Name, description=@Description, ingredients=@Ingredients, photo=@Photo, updatedAt=@updatedAt 
+                        SET name=@Name, description=@Description, ingredients=@Ingredients, price=@Price, photo=@Photo, updatedAt=@updatedAt 
                         WHERE id=@id";
-            var result = await db.ExecuteAsync(sql, new { dish.Name, dish.Description, dish.Ingredients, dish.Photo, updatedAt, id });
+            var result = await db.ExecuteAsync(sql, new { dish.Name, dish.Description, dish.Ingredients, dish.Price, dish.Photo, updatedAt, id });
             return result > 0;
         }
 

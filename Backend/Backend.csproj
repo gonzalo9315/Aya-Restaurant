@@ -13,5 +13,18 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.28.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\categories\arrocesypasta_category.png" />
+    <None Include="wwwroot\Images\categories\bebidas_category.png" />
+    <None Include="wwwroot\Images\categories\carnes_category.png" />
+    <None Include="wwwroot\Images\categories\delahuerta_category.png" />
+    <None Include="wwwroot\Images\categories\marysierra_category.png" />
+    <None Include="wwwroot\Images\categories\postres_category.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\dishes\" />
+  </ItemGroup>
+
 
 </Project>

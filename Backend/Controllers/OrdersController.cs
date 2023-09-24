@@ -38,6 +38,24 @@ namespace Backend.Controllers
             }
         }
 
+        // GET: api/Orders/NewOrders
+        [Route("NewOrders")]
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin, Employee")]
+        public async Task<ActionResult> GetAllNewOrders()
+        {
+            var orders = await _orderORM.GetAllNew();
+
+            if (orders.LongCount() > 0)
+            {
+                return Ok(orders);
+            }
+            else
+            {
+                return BadRequest("Error in Get New Orders: There is no orders");
+            }
+        }
+
         // GET: api/Orders/MyOrders
         [Route("MyOrders")]
         [HttpGet]
@@ -57,6 +75,27 @@ namespace Backend.Controllers
             else
             {
                 return BadRequest("Error in Get My Orders: There is no orders");
+            }
+        }
+
+        // GET: api/Orders/MyNewOrder
+        [Route("MyNewOrder")]
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<ActionResult> GetMyNewOrder()
+        {
+            var idToken = Int32.Parse(HttpContext.User!
+                         .Claims!
+                         .FirstOrDefault(c => c.Type == "id")!
+                         .Value);
+
+            try
+            {
+                return Ok(await _orderORM.GetMyNewOrder(idToken));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Error in Get My New Order by ID: " + ex.Message);
             }
         }
 
@@ -97,6 +136,7 @@ namespace Backend.Controllers
 
         // POST: api/Orders
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> CreateOrder([FromBody] Order order)
         {
             var idToken = Int32.Parse(HttpContext.User!

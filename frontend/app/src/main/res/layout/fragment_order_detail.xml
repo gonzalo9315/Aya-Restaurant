@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.OrderDetailFragment">
+
+    <LinearLayout
+        android:paddingTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedido:"
+            android:textSize="25dp"
+            android:fontFamily="@font/vollkorn_italic"
+            android:textStyle="italic"/>
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:id="@+id/headerRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/headerName"
+                    android:text="Nombre"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:id="@+id/headerAmount"
+                    android:text="Cantidad"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+                <TextView
+                    android:id="@+id/headerPrice"
+                    android:text="Precio"
+                    android:textStyle="bold"
+                    android:padding="8dp"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <RadioButton
+                android:id="@+id/created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="created" />
+            <RadioButton
+                android:id="@+id/cooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cooking" />
+            <RadioButton
+                android:id="@+id/delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="delivery" />
+            <RadioButton
+                android:id="@+id/delivered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="delivered" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/dark_grey"
+            android:text="Actualizar"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+</FrameLayout>

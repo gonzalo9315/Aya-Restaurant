@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RFV4uisxS775mgnHE+iNgnm3BqNq4aAeF40tk6CU7HN2ZrZSA+smCBP7TYjFKQnANJV9NebWNoftRPc4k1AnJA==",
+  "dgSpecHash": "jJoPwDNpNGS7n+y67wmxLl/vHu2Y+W+aHxyRhCJQ/clnLJlZLAZ2ncVU8vt5zYpX7qRgJoyJxv66qEvguHGLPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gonza\\Desktop\\AyaRestaurant\\Backend\\Backend.csproj",
+  "projectFilePath": "E:\\IT\\Proyectos\\AyaRestaurant\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gonza\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\gonza\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
@@ -86,7 +86,10 @@
     "C:\\Users\\gonza\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\gonza\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\gonza\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\gonza\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.31\\microsoft.netcore.app.host.win-x64.3.1.31.nupkg.sha512"
+    "C:\\Users\\gonza\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\gonza\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\gonza\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\gonza\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
   ],
   "logs": []
 }

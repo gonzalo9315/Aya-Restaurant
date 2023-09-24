@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ShoppingCartFragment">
+
+        <LinearLayout
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/emptyImage"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:src="@drawable/empty_shopping_cart"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="¡No hay nigún plato todavía en tu carrito"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textStyle="italic"
+                android:fontFamily="@font/vollkorn_italic"
+                android:textColor="@color/red"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/full"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center">
+                <TableRow
+                    android:id="@+id/headerRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/headerName"
+                        android:text="Nombre"
+                        android:textStyle="bold"
+                        android:padding="8dp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/headerAmount"
+                        android:text="Cantidad"
+                        android:textStyle="bold"
+                        android:padding="8dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/headerPrice"
+                        android:text="Precio"
+                        android:textStyle="bold"
+                        android:padding="8dp"
+                        android:gravity="center"/>
+                </TableRow>
+            </TableLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/InputTarjeta"
+                android:layout_marginTop="20dp"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                app:hintEnabled="false"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:hint="Nºtarjeta de credito"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/InputTitular"
+                android:layout_marginTop="10dp"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                app:hintEnabled="false"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:hint="Titular"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/InputDireccion"
+                android:layout_marginTop="10dp"
+                android:layout_width="280dp"
+                android:layout_height="40dp"
+                app:hintEnabled="false"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:hint="Direccion"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/InputCaducidad"
+                    android:layout_width="96dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="112dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Caducidad"
+                        android:paddingTop="8dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/InputCvv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    app:hintEnabled="false"
+                    android:layout_marginLeft="30dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="CVV"
+                        android:paddingTop="8dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/buyButton"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_grey"
+                android:text="Comprar"
+                android:textColor="@color/white"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+            <Button
+                android:id="@+id/cleanButton"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_grey"
+                android:text="limpiar carrito"
+                android:textColor="@color/white"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+        </LinearLayout>
+
+</FrameLayout>
